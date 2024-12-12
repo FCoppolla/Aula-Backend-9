@@ -16,14 +16,15 @@ idade_menor = (input("Digite a menor idade: "))
 idade_maior = (input("Digite a maior idade: "))
 
 # Consulta de parametrização, agora considerando a faixa de idades
-query = "SELECT nome, idade, idturma FROM aluno WHERE idade BETWEEN %s AND %s and alergias !='leite' or  null;"
+query = "SELECT nome, idade, idturma,alergias FROM aluno WHERE idade BETWEEN %s AND %s;"
 cursor.execute(query, (idade_menor, idade_maior))
 
 # Recuperando os resultados
 resultados = cursor.fetchall()
 if resultados:
-    for nome, idade, idturma in resultados:
-        print(f"Nome: {nome}, Idade: {idade}, Turma: {idturma}")
+    for nome, idade, idturma, alergias in resultados:
+        if (alergias != "leite"):
+            print(f"Nome: {nome}, Idade: {idade}, Turma: {idturma}")
 
 # Fechando o cursor e a conexão
 cursor.close()
