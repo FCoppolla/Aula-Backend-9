@@ -11,6 +11,9 @@ db_config = {
     'port': 3306,
     'database': 'escolasenac'
 }
+@app.route('/')
+def index():
+     return render_template('index.html')
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
